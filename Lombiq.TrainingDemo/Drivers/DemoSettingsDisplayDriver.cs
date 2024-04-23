@@ -54,7 +54,7 @@ public class DemoSettingsDisplayDriver : SectionDisplayDriver<ISite, DemoSetting
         .OnGroup(EditorGroupId);
     }
 
-    public override async Task<IDisplayResult> UpdateAsync(DemoSettings section, BuildEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(DemoSettings section, UpdateEditorContext context)
     {
         // Since this DisplayDriver is for the ISite object this UpdateAsync will be called every time if a site
         // settings editor is being updated. To make sure that this is for our editor group check it here.
