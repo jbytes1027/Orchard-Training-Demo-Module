@@ -169,6 +169,7 @@ profiling/
 *.orig
 .vs/
 #.vscode/
+.idea/
 .build/
 .testPublish/
 
