@@ -1,9 +1,8 @@
-using System.Text.Json.Nodes;
 using Lombiq.TrainingDemo.Fields;
-using OrchardCore.ContentManagement.Metadata.Builders;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Settings;

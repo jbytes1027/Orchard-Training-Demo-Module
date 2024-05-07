@@ -5,8 +5,6 @@
  * field.
  */
 
-using Lombiq.HelpfulLibraries.Common.Utilities;
-
 namespace Lombiq.TrainingDemo.Settings;
 
 public class ColorFieldSettings
