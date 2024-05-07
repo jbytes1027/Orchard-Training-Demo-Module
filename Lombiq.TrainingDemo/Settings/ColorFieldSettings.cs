@@ -9,7 +9,7 @@ using Lombiq.HelpfulLibraries.Common.Utilities;
 
 namespace Lombiq.TrainingDemo.Settings;
 
-public class ColorFieldSettings : ICopier<ColorFieldSettings>
+public class ColorFieldSettings
 {
     // We'll use this setting to determine whether the value of the field is required to be given by the user.
     public bool Required { get; set; }
