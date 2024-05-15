@@ -2,6 +2,7 @@ using Lombiq.TrainingDemo.Fields;
 using OrchardCore.ContentManagement.Metadata.Models;
 using OrchardCore.ContentTypes.Editors;
 using OrchardCore.DisplayManagement.Views;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Settings;
@@ -14,8 +15,8 @@ public class ColorFieldSettingsDriver : ContentPartFieldDefinitionDisplayDriver<
     public override IDisplayResult Edit(ContentPartFieldDefinition model) =>
         // Same old Initialize shape helper.
         Initialize<ColorFieldSettings>(
-            $"{nameof(ColorFieldSettings)}_Edit",
-            settings => model.PopulateSettings(settings))
+                $"{nameof(ColorFieldSettings)}_Edit",
+                settings => model.Settings.ToObject<ColorFieldSettings>().CopyTo(settings))
         .Location("Content");
 
     // ColorFieldSettings.Edit.cshtml file will contain the editor inputs.
