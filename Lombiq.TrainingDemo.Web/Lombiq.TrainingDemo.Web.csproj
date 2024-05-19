@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="OrchardCore" Version="1.8.3" />
     <PackageReference Include="OrchardCore.Logging.NLog" Version="1.8.3" />
     <PackageReference Include="OrchardCore.Application.Cms.Targets" Version="1.8.3" />
     <!-- This reference is not strictly needed here but included so if the web and the module projects' Orchard Core
