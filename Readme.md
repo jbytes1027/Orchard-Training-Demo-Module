@@ -23,7 +23,7 @@ Before you dive deep into this module it'd be best if you make sure that you hav
 The module comes with its own standalone solution and web app. So, to run it, simply do the following:
 
 1. Clone the latest `dev` branch of this repository or [download the source](https://github.com/Lombiq/Orchard-Training-Demo-Module/archive/refs/heads/dev.zip).
-2. Open the solution in your favorite IDE, like [Visual Studio](https://visualstudio.microsoft.com/), [Visual Studio Code](https://code.visualstudio.com/) or [Rider](https://code.visualstudio.com/).
+2. Open the solution in your favorite IDE, like [Visual Studio](https://visualstudio.microsoft.com/), [Visual Studio Code](https://code.visualstudio.com/) or [Rider](https://www.jetbrains.com/rider/).
 3. Make sure the `Lombiq.TrainingDemo.Web` project is the startup project (it should be; not needed for VS Code).
 4. Start the app.
    - In Visual Studio and VS Code, you can do this with <kbd>Ctrl</kbd> + <kbd>F5</kbd>.
