@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="!Exists('..\..\..\Libraries\Lombiq.HelpfulLibraries\Lombiq.HelpfulLibraries.OrchardCore\Lombiq.HelpfulLibraries.OrchardCore.csproj')">
-    <PackageReference Include="Lombiq.HelpfulLibraries.OrchardCore" Version="9.1.0" />
+    <PackageReference Include="Lombiq.HelpfulLibraries.OrchardCore" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
