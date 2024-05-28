@@ -45,7 +45,7 @@ public class TestedServiceTests
 
         mocker
             .GetMock<IContentManager>()
-            .Verify(contentManager => contentManager.GetAsync(It.Is<string>(id => id == TestContentId)));
+            .Verify(contentManager => contentManager.GetAsync(It.Is<string>(id => id == TestContentId), It.IsAny<VersionOptions>()));
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class TestedServiceTests
         // Setting up an IContentManager mock that'll return a basic ContentItem placeholder.
         mocker
             .GetMock<IContentManager>()
-            .Setup(contentManager => contentManager.GetAsync(It.IsAny<string>()))
+            .Setup(contentManager => contentManager.GetAsync(It.IsAny<string>(), It.IsAny<VersionOptions>()))
             .ReturnsAsync<string, IContentManager, ContentItem>(id => new ContentItem { ContentItemId = id });
 
         var contentItem = await service.GetContentItemOrThrowAsync(TestContentId);
