@@ -51,7 +51,7 @@ public class TestedServiceTests
     [Fact]
     public async Task ContentItemsAreRetrieved()
     {
-        // In this test we'll mock IContentManager so it actually returns something we can then verify.
+        // In this test we'll mock IContentManager, so it actually returns something we can then verify.
 
         var service = CreateTestedService(out var mocker);
 
@@ -71,7 +71,7 @@ public class TestedServiceTests
         // We're using a library called AutoMocker here. It extends the Moq mocking library with the ability to
         // automatically substitute injected dependencies with a mocked instance. It's a bit like a special dependency
         // injection container. This way, your tested classes will get all their dependencies injected even if you don't
-        // explicitly register a mock or stub for the.
+        // explicitly register a mock or stub.
 
         mocker = new AutoMocker();
         return mocker.CreateInstance<TestedService>();
