@@ -59,7 +59,7 @@ public class TestedServiceTests
         mocker
             .GetMock<IContentManager>()
             .Setup(contentManager => contentManager.GetAsync(It.IsAny<string>(), It.IsAny<VersionOptions>()))
-            .ReturnsAsync<string, IContentManager, ContentItem>(id => new ContentItem { ContentItemId = id });
+            .ReturnsAsync<string, VersionOptions, IContentManager, ContentItem>((id, _) => new ContentItem { ContentItemId = id });
 
         var contentItem = await service.GetContentItemOrThrowAsync(TestContentId);
 
