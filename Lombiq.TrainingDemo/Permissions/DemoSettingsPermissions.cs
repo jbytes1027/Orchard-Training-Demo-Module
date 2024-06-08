@@ -19,12 +19,11 @@ public class DemoSettingsPermissions : IPermissionProvider
         .AsEnumerable());
 
     public IEnumerable<PermissionStereotype> GetDefaultStereotypes() =>
-        new[]
-        {
+        [
             new PermissionStereotype
             {
                 Name = "Administrator",
-                Permissions = new[] { ManageDemoSettings },
+                Permissions = [ManageDemoSettings],
             },
-        };
+        ];
 }

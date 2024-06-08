@@ -24,6 +24,7 @@ namespace Lombiq.TrainingDemo.Controllers;
 // This is a controller just for the sake of easy demonstration, you can do the same thing anywhere. In the Index
 // action, we'll fetch content items from another tenant with the IContentManager service that you already know. This is
 // just an example though, really you can access any other service as well.
+[Route("[controller]/{action=Index}")]
 public class CrossTenantServicesController : Controller
 {
     private readonly IShellHost _shellHost;
@@ -38,6 +39,9 @@ public class CrossTenantServicesController : Controller
     [Route("CrossTenantServices")]
     public async Task<string> Index(string contentItemId)
     {
+        // If ModelState is not in a valid state we should abort the action and return null.
+        if (!ModelState.IsValid) return null;
+
         // Even if you don't create tenants, there will still be a single tenant in an Orchard app, the Default tenant.
         // For all other tenants you create you can provide the technical name.
 

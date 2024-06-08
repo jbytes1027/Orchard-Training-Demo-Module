@@ -103,8 +103,7 @@ public class DatabaseStorageController : Controller
     // NEXT STATION: Models/PersonPart.cs
 
     private static Book[] CreateDemoBooks() =>
-        new[]
-        {
+        [
             new Book
             {
                 CoverPhotoUrl = "/Lombiq.TrainingDemo/images/HarryPotter.jpg",
@@ -128,5 +127,5 @@ public class DatabaseStorageController : Controller
                 Description = "The nation of Panay, formed from a post-apocalyptic North America, is a country " +
                     "that consists of a wealthy Capitol region surrounded by 12 poorer districts.",
             },
-        };
+        ];
 }

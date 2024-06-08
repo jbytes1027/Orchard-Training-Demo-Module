@@ -22,7 +22,7 @@ public class PersonPermissions : IPermissionProvider
     public static readonly Permission AccessPersonListDashboard = new(
         nameof(AccessPersonListDashboard),
         "Access the Person List dashboard",
-        new[] { ManagePersons });
+        [ManagePersons]);
 
     public Task<IEnumerable<Permission>> GetPermissionsAsync() =>
         Task.FromResult(new[]
@@ -34,21 +34,20 @@ public class PersonPermissions : IPermissionProvider
 
     public IEnumerable<PermissionStereotype> GetDefaultStereotypes() =>
         // Giving some defaults: which roles should possess which permissions.
-        new[]
-        {
+        [
             new PermissionStereotype
             {
                 // Administrators will have all the permissions by default.
                 Name = "Administrator",
                 // Since AccessPersonListDashboard is implied by EditPersonList we don't have to list the former here.
-                Permissions = new[] { ManagePersons },
+                Permissions = [ManagePersons],
             },
             new PermissionStereotype
             {
                 Name = "Editor",
-                Permissions = new[] { AccessPersonListDashboard },
+                Permissions = [AccessPersonListDashboard],
             },
-        };
+        ];
 }
 
 // NEXT STATION: Go back to AuthorizationController and find the CanManagePersons action.
