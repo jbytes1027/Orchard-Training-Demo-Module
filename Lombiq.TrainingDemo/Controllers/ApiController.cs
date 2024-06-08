@@ -32,7 +32,7 @@ namespace Lombiq.TrainingDemo.Controllers;
 [System.Diagnostics.CodeAnalysis.SuppressMessage(
     "Major Code Smell",
     "S6961:API Controllers should derive from ControllerBase instead of Controller",
-    Justification = "Seems to be a false positive as ChallangeOrForbid() method is used in the class.")]
+    Justification = "Seems to be a false positive as per line 62.")]
 public class ApiController : Controller
 {
     private readonly IAuthorizationService _authorizationService;

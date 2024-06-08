@@ -13,7 +13,7 @@ namespace Lombiq.TrainingDemo.Services;
 [SuppressMessage(
         "Usage",
         "VSTHRD003:Avoid awaiting foreign Tasks",
-        Justification = "We need LocalNowAsync to create cachedDate and we don't need any overhead for workarounds as it is working as expected.")]
+        Justification = "We need LocalNowAsync to create cachedDate.")]
 public class DateTimeCachingService : IDateTimeCachingService
 {
     public const string MemoryCacheKey = "Lombiq.TrainingDemo.MemoryCache.DateTime";
