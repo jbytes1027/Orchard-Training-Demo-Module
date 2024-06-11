@@ -29,6 +29,11 @@ namespace Lombiq.TrainingDemo.Controllers;
 // endpoints should most of the time use the "Api" authentication scheme: This is not the same that standard users are
 // authenticated with (via cookies).
 [Authorize(AuthenticationSchemes = "Api"), IgnoreAntiforgeryToken, AllowAnonymous]
+[System.Diagnostics.CodeAnalysis.SuppressMessage(
+    "Major Code Smell",
+    "S6961:API Controllers should derive from ControllerBase instead of Controller",
+    Justification = "Can't be changed due to line 62. Will be applicable after an Orchard upgrade due to " +
+        "https://github.com/OrchardCMS/OrchardCore/issues/16186 being fixed.")]
 public class ApiController : Controller
 {
     private readonly IAuthorizationService _authorizationService;
@@ -46,6 +51,7 @@ public class ApiController : Controller
     // authorize with a client ID and secret of an OpenID app set up from the Orchard admin. For more info see:
     // https://docs.orchardcore.net/en/latest/docs/reference/modules/OpenId/. If you just want to quickly test this API
     // then remove the Authorize attribute above.
+    [HttpGet]
     public async Task<IActionResult> Get(string contentItemId)
     {
         // Authorization is important in API endpoints as well of course. We're re-using the previously created
