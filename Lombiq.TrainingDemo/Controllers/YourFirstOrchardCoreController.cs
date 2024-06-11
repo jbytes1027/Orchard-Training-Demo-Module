@@ -17,7 +17,6 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-[Route("[controller]/{action=Index}")]
 public class YourFirstOrchardCoreController : Controller
 {
     private readonly INotifier _notifier;
