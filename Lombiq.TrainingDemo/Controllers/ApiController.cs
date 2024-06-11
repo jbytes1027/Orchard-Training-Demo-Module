@@ -32,7 +32,8 @@ namespace Lombiq.TrainingDemo.Controllers;
 [System.Diagnostics.CodeAnalysis.SuppressMessage(
     "Major Code Smell",
     "S6961:API Controllers should derive from ControllerBase instead of Controller",
-    Justification = "Seems to be a false positive as per line 62.")]
+    Justification = "Can't be changed due to line 62. Will be applicable after an Orchard upgrade due to " +
+        "https://github.com/OrchardCMS/OrchardCore/issues/16186 being fixed.")]
 public class ApiController : Controller
 {
     private readonly IAuthorizationService _authorizationService;
