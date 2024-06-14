@@ -4,11 +4,16 @@ using OrchardCore.DynamicCache;
 using OrchardCore.Environment.Cache;
 using OrchardCore.Modules;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Services;
 
+[SuppressMessage(
+        "Usage",
+        "VSTHRD003:Avoid awaiting foreign Tasks",
+        Justification = "We need LocalNowAsync to create cachedDate.")]
 public class DateTimeCachingService : IDateTimeCachingService
 {
     public const string MemoryCacheKey = "Lombiq.TrainingDemo.MemoryCache.DateTime";

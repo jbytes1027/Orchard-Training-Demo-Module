@@ -34,7 +34,7 @@ public class PersonPartViewModel : IValidatableObject
 
         if (BirthDateUtc.HasValue && clock.UtcNow < BirthDateUtc.Value.AddYears(18))
         {
-            yield return new ValidationResult(localizer["The person must be 18 or older."], new[] { nameof(BirthDateUtc) });
+            yield return new ValidationResult(localizer["The person must be 18 or older."], [nameof(BirthDateUtc)]);
         }
 
         // Now go back to the PersonPartDisplayDriver.
