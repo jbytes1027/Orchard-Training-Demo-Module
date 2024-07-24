@@ -13,10 +13,10 @@
  */
 
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using OrchardCore.BackgroundTasks;
 using OrchardCore.BackgroundTasks.Services;
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,13 +32,9 @@ public class DemoBackgroundTask : IBackgroundTask
     // Setting a maximum time this background task will be executed.
     private const int MaxCount = 5;
 
-    private readonly ILogger<DemoBackgroundTask> _logger;
-
     // Storing execution times in a private field. Since background tasks are singleton objects this will keep its value
     // while the application runs.
     private int _count;
-
-    public DemoBackgroundTask(ILogger<DemoBackgroundTask> logger) => _logger = logger;
 
     // Since background tasks are singletons we'll need this IServiceProvider instance to resolve every non-singleton
     // service. When in doubt, just use this IServiceProvider instance to resolve everything instead of injecting a
@@ -47,13 +43,11 @@ public class DemoBackgroundTask : IBackgroundTask
     {
         // This is where the task is implemented. Increment _count and print it to the error log with a message. Notice
         // that there is a GetTaskName() extension method for IBackgroundTask which will return the technical name of
-        // the task. We use LogError() not because we're logging an error just so the message shows up in the log even
-        // with log levels ignoring e.g. info or debug entries. Use the logging methods appropriately otherwise!
-        _logger.LogError(
-            "Expected non-error - {Count}/{MaxCount}: Hello from {TaskName}!",
-            (++_count).ToTechnicalString(),
-            MaxCount,
-            this.GetTaskName());
+        // the task.
+
+        // Writing a message to the debug output, just so we can see this code running. This will be visible in output
+        // window of your IDE when running the app with the debugger attached.
+        Debug.WriteLine($"{(++_count).ToTechnicalString()}/{MaxCount}: Hello from {this.GetTaskName()}!");
 
         if (_count == MaxCount)
         {
