@@ -29,12 +29,7 @@ namespace Lombiq.TrainingDemo.Controllers;
 // endpoints should most of the time use the "Api" authentication scheme: This is not the same that standard users are
 // authenticated with (via cookies).
 [Authorize(AuthenticationSchemes = "Api"), IgnoreAntiforgeryToken, AllowAnonymous]
-[System.Diagnostics.CodeAnalysis.SuppressMessage(
-    "Major Code Smell",
-    "S6961:API Controllers should derive from ControllerBase instead of Controller",
-    Justification = "Can't be changed due to line 62. Will be applicable after an Orchard upgrade due to " +
-        "https://github.com/OrchardCMS/OrchardCore/issues/16186 being fixed.")]
-public class ApiController : Controller
+public class ApiController : ControllerBase
 {
     private readonly IAuthorizationService _authorizationService;
     private readonly IContentManager _contentManager;
