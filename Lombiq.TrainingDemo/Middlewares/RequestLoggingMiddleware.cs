@@ -4,13 +4,13 @@
  * in any ASP.NET Core app but nevertheless, let's see a simple example, though a bit spiced up with Orchard services.
  * For more info on middlewares in general check out
  * https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/. Check out this tutorial too:
- * https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write
+ * https://docs.microsoft.com/en-us/aspnet/core/fundamentals/middleware/write.
  */
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.Extensions.Logging;
 using OrchardCore.Settings;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Middlewares;
@@ -28,12 +28,11 @@ public class RequestLoggingMiddleware
     // You need to inject a RequestDelegate instance here.
     public RequestLoggingMiddleware(RequestDelegate next) => _next = next;
 
-    // This method is the actual middleware. Note that apart from the first parameter obligatorily being HttpContext
+    // This method is the actual middleware. Note that apart from the first parameter obligatorily being HttpContext,
     // further parameters can be injected Orchard services.
     public async Task InvokeAsync(
         HttpContext context,
-        ISiteService siteService,
-        ILogger<RequestLoggingMiddleware> logger)
+        ISiteService siteService)
     {
         // We let the next middleware run, but this is not mandatory: if this middleware would return a cached page for
         // example then we would write the cached response to the HttpContext and leave this out.
@@ -42,12 +41,10 @@ public class RequestLoggingMiddleware
         // middleware that would normally result in a 404 or an 503, so it's maybe better to always let them bubble up.
         // But keep in mind that any uncaught exception here in your code will result in an error page.
 
-        // We use LogError() not because we're logging an error just so the message shows up in the log even with log
-        // levels ignoring e.g. info or debug entries. Use the logging methods appropriately otherwise!
-        logger.LogError(
-            "Expected non-error - The url {Url} was just hit on the site {Name}.",
-            UriHelper.GetDisplayUrl(context.Request),
-            (await siteService.GetSiteSettingsAsync()).SiteName);
+        // Writing a message to the debug output, just so we can see this code running. This will be visible in output
+        // window of your IDE when running the app with the debugger attached.
+        Debug.WriteLine(
+            $"The url {UriHelper.GetDisplayUrl(context.Request)} was just hit on the site {(await siteService.GetSiteSettingsAsync()).SiteName}.");
     }
 }
 
