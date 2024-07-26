@@ -14,4 +14,4 @@ app
     .UseStaticFiles()
     .UseOrchardCore();
 
-app.Run();
+await app.RunAsync();
