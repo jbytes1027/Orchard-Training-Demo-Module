@@ -59,7 +59,7 @@ public class YourFirstOrchardCoreController : Controller
     }
 
     // Let's see some custom routing here. This attribute will override the default route and use this one.
-    [Route("TrainingDemo/NotifyMe")]
+    [HttpGet, Route("TrainingDemo/NotifyMe")]
     public async Task<IActionResult> NotifyMe()
     {
         // ILogger is an ASP.NET Core service that will write something into the specific log files. In Orchard Core
