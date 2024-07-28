@@ -33,7 +33,7 @@ public class PersonAgeGraphQLFilter : IGraphQLFilter<ContentItem>
         IResolveFieldContext context)
     {
         var (name, value) = context.Arguments.FirstOrDefault(
-            argument => argument.Key.StartsWith(AgeFilterName, StringComparison.Ordinal));
+            argument => argument.Value.Value is int && argument.Key.StartsWithOrdinal(AgeFilterName));
 
         if (name != null && value.Value is int age)
         {

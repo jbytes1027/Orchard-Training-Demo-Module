@@ -41,8 +41,4 @@ public class PersonPartObjectGraphType : ObjectGraphType<PersonPart>
     }
 }
 
-// Warning: There seems to be a bug when your query includes the built-in "biography" field before the "person" field.
-// If you do it the other way around it works though. You can track the issue here:
-// https://github.com/OrchardCMS/OrchardCore/issues/10181
-
 // NEXT STATION: Services/PersonPartWhereInputObjectGraphType.cs
