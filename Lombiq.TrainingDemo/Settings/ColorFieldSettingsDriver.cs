@@ -26,9 +26,7 @@ public class ColorFieldSettingsDriver : ContentPartFieldDefinitionDisplayDriver<
         ContentPartFieldDefinition model,
         UpdatePartFieldEditorContext context)
     {
-        var settings = new ColorFieldSettings();
-
-        await context.Updater.TryUpdateModelAsync(settings, Prefix);
+        var settings = await context.CreateModelAsync<ColorFieldSettings>(Prefix);
 
         // A content field or a content part can have multiple settings. These settings are stored in a single JSON
         // object. This helper will merge our settings into this JSON object so these will be stored.

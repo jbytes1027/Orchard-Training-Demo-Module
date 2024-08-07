@@ -67,10 +67,7 @@ public class DemoSettingsDisplayDriver : SectionDisplayDriver<ISite, DemoSetting
             }
 
             // Update the view model and the settings model as usual.
-            var viewModel = new DemoSettingsViewModel();
-
-            await context.Updater.TryUpdateModelAsync(viewModel, Prefix);
-
+            var viewModel = await context.CreateModelAsync<DemoSettingsViewModel>(Prefix);
             section.Message = viewModel.Message;
         }
 
