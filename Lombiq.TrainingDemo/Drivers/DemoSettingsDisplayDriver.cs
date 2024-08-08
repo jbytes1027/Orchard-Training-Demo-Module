@@ -14,12 +14,16 @@ namespace Lombiq.TrainingDemo.Drivers;
 // Now this display driver abstraction is different from the one you've seen before. In Orchard Core you can connect
 // different objects to a master object that will be connected in the database when storing them. Site settings are
 // handled this way.
-public class DemoSettingsDisplayDriver : SectionDisplayDriver<ISite, DemoSettings>
+public class DemoSettingsDisplayDriver : SiteDisplayDriver<DemoSettings>
 {
     // Since technically we have only one SiteSettings we have separate the editors using editor groups. It's a good
     // idea to store the editor group ID in a publicly accessibly constant (would be much better to store it in a static
     // class placed in a Constants folder).
     public const string EditorGroupId = "Demo";
+
+    // This abstract property of SiteDisplayDriver has to be overridden. It is used to filter the editor by group name
+    // under the hood, so you don't have to check it manually.
+    protected override string SettingsGroupId => EditorGroupId;
 
     private readonly IAuthorizationService _authorizationService;
     private readonly IHttpContextAccessor _hca;
