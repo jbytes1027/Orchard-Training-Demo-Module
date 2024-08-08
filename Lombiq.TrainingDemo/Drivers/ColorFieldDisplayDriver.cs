@@ -5,7 +5,6 @@ using Microsoft.Extensions.Localization;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.ContentManagement.Metadata.Models;
-using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -56,8 +55,9 @@ public partial class ColorFieldDisplayDriver : ContentFieldDisplayDriver<ColorFi
 
     // NEXT STATION: Settings/ColorFieldSettings
 
-    public override async Task<IDisplayResult> UpdateAsync(ColorField field, IUpdateModel updater, UpdateFieldEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(ColorField field, UpdateFieldEditorContext context)
     {
+        var updater = context.Updater;
         var viewModel = new EditColorFieldViewModel();
 
         // Using this overload of the model updater you can specifically say what properties need to be updated. This

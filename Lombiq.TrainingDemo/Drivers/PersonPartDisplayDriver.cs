@@ -3,7 +3,6 @@ using Lombiq.TrainingDemo.ViewModels;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.DisplayManagement.Handlers;
-using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
 
@@ -74,7 +73,7 @@ public class PersonPartDisplayDriver : ContentPartDisplayDriver<PersonPart>
 
     // So we had an Edit (or EditAsync) method that generates the editor shape. Now it's time to do the content
     // part-specific model binding and validation.
-    public override async Task<IDisplayResult> UpdateAsync(PersonPart part, IUpdateModel updater, UpdatePartEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(PersonPart part, UpdatePartEditorContext context)
     {
         // Via the IUpdateModel you will be able to use the current controller's model binding helpers here in the
         // driver. The prefix property will be used to distinguish between similarly named input fields when building
