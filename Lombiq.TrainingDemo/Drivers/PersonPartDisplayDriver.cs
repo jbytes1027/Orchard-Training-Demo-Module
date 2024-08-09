@@ -2,7 +2,7 @@ using Lombiq.TrainingDemo.Models;
 using Lombiq.TrainingDemo.ViewModels;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
-using OrchardCore.DisplayManagement.ModelBinding;
+using OrchardCore.DisplayManagement.Handlers;
 using OrchardCore.DisplayManagement.Views;
 using System.Threading.Tasks;
 
@@ -27,7 +27,7 @@ public class PersonPartDisplayDriver : ContentPartDisplayDriver<PersonPart>
     public override IDisplayResult Display(PersonPart part, BuildPartDisplayContext context) =>
         // Here you have a shape helper with a shape name possibly and a factory. The Initialize method will instantiate
         // a view model from a type given as a generic parameter. It's recommended to use view models for the views like
-        // we're doing it here (sometimes you'd want a separate view model for the Display() and Edit(). There are
+        // we're doing it here (sometimes you'd want a separate view model for the Display() and Edit()). There are
         // helper methods to generate the shape type. GetDisplayShapeType() in this case will generate "PersonPart" by
         // default but this can be overridden form the part's settings under the content type's settings on the admin.
         // In the factory we map the content part properties to the view model; if there is any heavy lifting needed to
@@ -73,16 +73,14 @@ public class PersonPartDisplayDriver : ContentPartDisplayDriver<PersonPart>
 
     // So we had an Edit (or EditAsync) method that generates the editor shape. Now it's time to do the content
     // part-specific model binding and validation.
-    public override async Task<IDisplayResult> UpdateAsync(PersonPart part, IUpdateModel updater, UpdatePartEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(PersonPart part, UpdatePartEditorContext context)
     {
-        var viewModel = new PersonPartViewModel();
-
         // Via the IUpdateModel you will be able to use the current controller's model binding helpers here in the
         // driver. The prefix property will be used to distinguish between similarly named input fields when building
         // the editor form (so e.g. two content parts composing a content item can have an input field called "Name").
-        // By default Orchard Core will use the content part name but if you have multiple drivers with editors for a
+        // By default, Orchard Core will use the content part name but if you have multiple drivers with editors for a
         // content part you need to override it in the driver.
-        await updater.TryUpdateModelAsync(viewModel, Prefix);
+        var viewModel = await context.CreateModelAsync<PersonPartViewModel>(Prefix);
 
         // Now you can do some validation if needed. One way to do it you can simply write your own validation here or
         // you can do it in the view model class.
@@ -90,7 +88,7 @@ public class PersonPartDisplayDriver : ContentPartDisplayDriver<PersonPart>
         // Go and check the ViewModels/PersonPartViewModel to see how to do it and then come back here.
 
         // Finally map the view model to the content part. By default, these changes won't be persisted if there was a
-        // validation error. Otherwise these will be automatically stored in the database.
+        // validation error. Otherwise, these will be automatically stored in the database.
         part.BirthDateUtc = viewModel.BirthDateUtc;
         part.Name = viewModel.Name;
         part.Handedness = viewModel.Handedness;

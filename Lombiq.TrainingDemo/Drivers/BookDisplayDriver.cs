@@ -20,7 +20,7 @@ public class BookDisplayDriver : DisplayDriver<Book>
         "StyleCop.CSharp.ReadabilityRules",
         "SA1114:Parameter list should follow declaration",
         Justification = "Necessary for comments.")]
-    public override IDisplayResult Display(Book model) =>
+    public override IDisplayResult Display(Book model, BuildDisplayContext context) =>
         // For the sake of demonstration we use Combined() here. It makes it possible to return multiple shapes from a
         // driver method - won't necessarily be displayed all at once!
         Combine(

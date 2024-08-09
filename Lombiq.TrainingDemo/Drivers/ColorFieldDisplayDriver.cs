@@ -5,7 +5,6 @@ using Microsoft.Extensions.Localization;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.ContentManagement.Metadata.Models;
-using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -56,31 +55,31 @@ public partial class ColorFieldDisplayDriver : ContentFieldDisplayDriver<ColorFi
 
     // NEXT STATION: Settings/ColorFieldSettings
 
-    public override async Task<IDisplayResult> UpdateAsync(ColorField field, IUpdateModel updater, UpdateFieldEditorContext context)
+    public override async Task<IDisplayResult> UpdateAsync(ColorField field, UpdateFieldEditorContext context)
     {
+        var updater = context.Updater;
         var viewModel = new EditColorFieldViewModel();
 
         // Using this overload of the model updater you can specifically say what properties need to be updated. This
         // way you make sure no other properties will be bound to the view model. Instead of this you could put
         // [BindNever] attributes on the properties to make the model binder to skip those, it's up to you.
-        if (await updater.TryUpdateModelAsync(viewModel, Prefix, f => f.Value, f => f.ColorName))
+        await updater.TryUpdateModelAsync(viewModel, Prefix, viewModel => viewModel.Value, viewModel => viewModel.ColorName);
+
+        // Get the ColorFieldSettings to use it when validating the view model.
+        var settings = context.PartFieldDefinition.GetSettings<ColorFieldSettings>();
+        if (settings.Required && string.IsNullOrWhiteSpace(viewModel.Value))
         {
-            // Get the ColorFieldSettings to use it when validating the view model.
-            var settings = context.PartFieldDefinition.GetSettings<ColorFieldSettings>();
-            if (settings.Required && string.IsNullOrWhiteSpace(viewModel.Value))
-            {
-                updater.ModelState.AddModelError(Prefix, T["A value is required for {0}.", context.PartFieldDefinition.DisplayName()]);
-            }
-
-            // Also some custom validation for our ColorField hex value.
-            var isInvalidHexColor = !string.IsNullOrWhiteSpace(viewModel.Value) &&
-                !RegexExpression().IsMatch(viewModel.Value);
-
-            if (isInvalidHexColor) updater.ModelState.AddModelError(Prefix, T["The given color is invalid."]);
-
-            field.ColorName = viewModel.ColorName;
-            field.Value = viewModel.Value;
+            updater.ModelState.AddModelError(Prefix, T["A value is required for {0}.", context.PartFieldDefinition.DisplayName()]);
         }
+
+        // Also some custom validation for our ColorField hex value.
+        var isInvalidHexColor = !string.IsNullOrWhiteSpace(viewModel.Value) &&
+                                !RegexExpression().IsMatch(viewModel.Value);
+
+        if (isInvalidHexColor) updater.ModelState.AddModelError(Prefix, T["The given color is invalid."]);
+
+        field.ColorName = viewModel.ColorName;
+        field.Value = viewModel.Value;
 
         return await EditAsync(field, context);
     }
