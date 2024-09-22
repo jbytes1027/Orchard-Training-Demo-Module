@@ -16,13 +16,13 @@ public class PersonsAdminMenu : INavigationProvider
 
     public PersonsAdminMenu(IStringLocalizer<PersonsAdminMenu> stringLocalizer) => T = stringLocalizer;
 
-    public Task BuildNavigationAsync(string name, NavigationBuilder builder)
+    public ValueTask BuildNavigationAsync(string name, NavigationBuilder builder)
     {
         // The name parameter differentiates different menu types. In our case it is "admin" so let's check if the menu
         // being built is for admin.
         if (!string.Equals(name, "admin", StringComparison.OrdinalIgnoreCase))
         {
-            return Task.CompletedTask;
+            return ValueTask.CompletedTask;
         }
 
         // The builder will add different menu items on different levels. Here we'll create a 3-level menu. The
@@ -80,7 +80,7 @@ public class PersonsAdminMenu : INavigationProvider
                     .Permission(PersonPermissions.AccessPersonListDashboard)
                     .LocalNav())));
 
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
 }
 
