@@ -8,4 +8,5 @@ using System.Diagnostics.CodeAnalysis;
     "Style",
     "IDE0055:Fix formatting",
     Justification = "The rule prevents adding comments in the middle of a method call chain, which makes the " +
-                    "training less readable.")]
+                    "training less readable.",
+    Scope = "module")]
