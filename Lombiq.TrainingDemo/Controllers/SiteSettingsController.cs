@@ -35,9 +35,9 @@ public sealed class SiteSettingsController : Controller
     // give it a value on the Dashboard if you want to see something here.
     public async Task<string> DemoSettings()
     {
-        // As mentioned the custom settings objects are serialized into the ISite object so use the .As<>() helper to
-        // access it as you see below.
-        var messageFromSiteSettings = (await _siteService.GetSiteSettingsAsync()).As<DemoSettings>().Message;
+        // As mentioned the custom settings objects are serialized into the ISite object. We could use the .As<>()
+        // helper to access it, but Orchard Core also has the built-in GetSettingsAsync<>() shortcut to do just that.
+        var messageFromSiteSettings = (await _siteService.GetSettingsAsync<DemoSettings>()).Message;
 
         // But as you've seen in DemoSettings.cs our site settings are also Options so we can use it as such too:
         var messageFromOptions = _demoSettings.Message;
