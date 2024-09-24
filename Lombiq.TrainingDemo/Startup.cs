@@ -99,7 +99,7 @@ public sealed class Startup : StartupBase
         services.Configure<DemoSettings>(_shellConfiguration.GetSection("Lombiq_TrainingDemo"));
         services.AddTransient<IConfigureOptions<DemoSettings>, DemoSettingsConfiguration>();
         services.AddScoped<IDisplayDriver<ISite>, DemoSettingsDisplayDriver>();
-        services.AddScoped<IPermissionProvider, DemoSettingsPermissions>();
+        services.AddPermissionProvider<DemoSettingsPermissions>();
         services.AddNavigationProvider<DemoSettingsAdminMenu>();
 
         // Filters
