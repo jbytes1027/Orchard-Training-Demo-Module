@@ -11,7 +11,7 @@ namespace Lombiq.TrainingDemo.Drivers;
 // drivers. Finally, you can create multiple drivers for one object and the DisplayManager will make sure that all of
 // your drivers are used and their specific logic will be executed. Don't forget to register this class with the service
 // provider (see: Startup.cs).
-public class BookDisplayDriver : DisplayDriver<Book>
+public sealed class BookDisplayDriver : DisplayDriver<Book>
 {
     // So we have a Book object and we want to register some display shapes. For this you need to override the Display
     // or DisplayAsync methods depending on your code (only one can be used!). Ultimately, the DisplayManager will

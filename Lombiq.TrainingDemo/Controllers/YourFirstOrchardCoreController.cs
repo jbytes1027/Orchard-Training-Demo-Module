@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class YourFirstOrchardCoreController : Controller
+public sealed class YourFirstOrchardCoreController : Controller
 {
     private readonly INotifier _notifier;
     private readonly IStringLocalizer T;

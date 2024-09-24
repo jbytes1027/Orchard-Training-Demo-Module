@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class CacheController : Controller
+public sealed class CacheController : Controller
 {
     // The actual caching is implemented in a service which we'll soon investigate.
     private readonly IDateTimeCachingService _dateTimeCachingService;

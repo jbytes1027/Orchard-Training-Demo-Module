@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Permissions;
 
-public class DemoSettingsPermissions : IPermissionProvider
+public sealed class DemoSettingsPermissions : IPermissionProvider
 {
     public static readonly Permission ManageDemoSettings = new(
         nameof(ManageDemoSettings),

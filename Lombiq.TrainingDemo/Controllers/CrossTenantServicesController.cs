@@ -24,7 +24,7 @@ namespace Lombiq.TrainingDemo.Controllers;
 // This is a controller just for the sake of easy demonstration, you can do the same thing anywhere. In the Index
 // action, we'll fetch content items from another tenant with the IContentManager service that you already know. This is
 // just an example though, really you can access any other service as well.
-public class CrossTenantServicesController : Controller
+public sealed class CrossTenantServicesController : Controller
 {
     private readonly IShellHost _shellHost;
 

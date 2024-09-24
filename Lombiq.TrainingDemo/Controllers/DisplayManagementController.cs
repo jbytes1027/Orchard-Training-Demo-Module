@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class DisplayManagementController : Controller, IUpdateModel
+public sealed class DisplayManagementController : Controller, IUpdateModel
 {
     // The core display management features can be used via the IDisplayManager service. The generic parameter will be
     // the object that needs to be displayed on the UI somehow. Don't forget to register this generic class with the

@@ -19,7 +19,7 @@ using YesSql;
 namespace Lombiq.TrainingDemo.Controllers;
 
 // If you have multiple admin controllers then name them whatever you want but put an [Admin] attribute on them.
-public class AdminController : Controller
+public sealed class AdminController : Controller
 {
     private readonly IContentItemDisplayManager _contentItemDisplayManager;
     private readonly ISession _session;

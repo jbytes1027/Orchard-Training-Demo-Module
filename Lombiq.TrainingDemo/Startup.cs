@@ -54,7 +54,7 @@ namespace Lombiq.TrainingDemo;
 
 // While the startup class doesn't need to derive from StartupBase and can just use conventionally named methods it's a
 // bit less of a magic this way, and code analysis won't tell us to make it static.
-public class Startup : StartupBase
+public sealed class Startup : StartupBase
 {
     private readonly IShellConfiguration _shellConfiguration;
 
@@ -175,7 +175,7 @@ public class Startup : StartupBase
 // feature only when necessary. Note that controllers aren't registered but activated automatically so you have to
 // decorate them with the attribute too.
 [Feature("Lombiq.TrainingDemo.Middlewares")]
-public class MiddlewaresStartup : StartupBase
+public sealed class MiddlewaresStartup : StartupBase
 {
     public override void Configure(IApplicationBuilder app, IEndpointRouteBuilder routes, IServiceProvider serviceProvider) =>
         // You can put service configuration here as you would do it in other ASP.NET Core applications. If you don't

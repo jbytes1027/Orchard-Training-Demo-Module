@@ -11,7 +11,7 @@ namespace Lombiq.TrainingDemo.Drivers;
 // Drivers inherited from ContentPartDisplayDrivers have a functionality similar to the one described in
 // BookDisplayDriver but these are for ContentParts. Don't forget to register this class with the service provider (see:
 // Startup.cs).
-public class PersonPartDisplayDriver : ContentPartDisplayDriver<PersonPart>
+public sealed class PersonPartDisplayDriver : ContentPartDisplayDriver<PersonPart>
 {
     // Some notes on the various methods you can override:
     // - Keep in mind that all of them have a sync and async version, use the one more appropriate for what you do

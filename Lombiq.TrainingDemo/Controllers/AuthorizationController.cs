@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class AuthorizationController : Controller
+public sealed class AuthorizationController : Controller
 {
     private readonly IAuthorizationService _authorizationService;
     private readonly IContentManager _contentManager;

@@ -7,7 +7,7 @@ namespace Lombiq.TrainingDemo.Permissions;
 
 // Permissions that are used when authorizing users and can be added to different roles are defined in Permission
 // Providers.
-public class PersonPermissions : IPermissionProvider
+public sealed class PersonPermissions : IPermissionProvider
 {
     // Define the permissions (can be multiple) that you want to add to roles on the dashboard (or from here as a
     // default). In a PermissionProvider it's a good idea to define the permission as publicly accessible so you can

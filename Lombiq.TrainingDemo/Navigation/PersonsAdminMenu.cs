@@ -10,7 +10,7 @@ namespace Lombiq.TrainingDemo.Navigation;
 
 // INavigationProvider is used for building different kind of navigations (not just admin menus). Don't forget to
 // register this class with the service provider (see: Startup.cs).
-public class PersonsAdminMenu : INavigationProvider
+public sealed class PersonsAdminMenu : INavigationProvider
 {
     private readonly IStringLocalizer T;
 

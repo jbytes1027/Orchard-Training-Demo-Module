@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class SiteSettingsController : Controller
+public sealed class SiteSettingsController : Controller
 {
     private readonly ISiteService _siteService;
     private readonly DemoSettings _demoSettings;

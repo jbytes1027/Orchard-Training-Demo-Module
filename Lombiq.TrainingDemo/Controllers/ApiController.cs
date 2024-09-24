@@ -29,7 +29,7 @@ namespace Lombiq.TrainingDemo.Controllers;
 // endpoints should most of the time use the "Api" authentication scheme: This is not the same that standard users are
 // authenticated with (via cookies).
 [Authorize(AuthenticationSchemes = "Api"), IgnoreAntiforgeryToken, AllowAnonymous]
-public class ApiController : ControllerBase
+public sealed class ApiController : ControllerBase
 {
     private readonly IAuthorizationService _authorizationService;
     private readonly IContentManager _contentManager;
