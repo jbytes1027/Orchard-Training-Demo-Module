@@ -90,17 +90,17 @@ public class Startup : StartupBase
         services.AddScoped<IPermissionProvider, PersonPermissions>();
 
         // Admin Menu
-        services.AddScoped<INavigationProvider, PersonsAdminMenu>();
+        services.AddNavigationProvider<PersonsAdminMenu>();
 
         // Main Menu
-        services.AddScoped<INavigationProvider, TrainingDemoNavigationProvider>();
+        services.AddNavigationProvider<TrainingDemoNavigationProvider>();
 
         // Demo Settings
         services.Configure<DemoSettings>(_shellConfiguration.GetSection("Lombiq_TrainingDemo"));
         services.AddTransient<IConfigureOptions<DemoSettings>, DemoSettingsConfiguration>();
         services.AddScoped<IDisplayDriver<ISite>, DemoSettingsDisplayDriver>();
         services.AddScoped<IPermissionProvider, DemoSettingsPermissions>();
-        services.AddScoped<INavigationProvider, DemoSettingsAdminMenu>();
+        services.AddNavigationProvider<DemoSettingsAdminMenu>();
 
         // Filters
         services.Configure<MvcOptions>((options) =>
