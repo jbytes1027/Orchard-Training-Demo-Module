@@ -87,7 +87,7 @@ public sealed class Startup : StartupBase
         services.AddTransient<IConfigureOptions<ResourceManagementOptions>, ResourceManagementOptionsConfiguration>();
 
         // Permissions
-        services.AddScoped<IPermissionProvider, PersonPermissions>();
+        services.AddPermissionProvider<PersonPermissions>();
 
         // Admin Menu
         services.AddNavigationProvider<PersonsAdminMenu>();
