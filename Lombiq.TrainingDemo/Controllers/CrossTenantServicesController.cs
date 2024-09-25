@@ -24,7 +24,7 @@ namespace Lombiq.TrainingDemo.Controllers;
 // This is a controller just for the sake of easy demonstration, you can do the same thing anywhere. In the Index
 // action, we'll fetch content items from another tenant with the IContentManager service that you already know. This is
 // just an example though, really you can access any other service as well.
-public class CrossTenantServicesController : Controller
+public sealed class CrossTenantServicesController : Controller
 {
     private readonly IShellHost _shellHost;
 
@@ -35,7 +35,7 @@ public class CrossTenantServicesController : Controller
     // A simple route for convenience. You can access this from under /CrossTenantServices?contentItemId=ID. Here ID
     // needs to be a content item ID that you can get e.g. from the URL when you open an item to edit from the admin (it
     // looks something like "4da2sme18cc2k2r5d4w23d4cwj" which is NOT made by a cat walking across the keyboard!).
-    [Route("CrossTenantServices")]
+    [HttpGet, Route("CrossTenantServices")]
     public async Task<string> Index(string contentItemId)
     {
         // If ModelState is not in a valid state we should abort the action and return null.

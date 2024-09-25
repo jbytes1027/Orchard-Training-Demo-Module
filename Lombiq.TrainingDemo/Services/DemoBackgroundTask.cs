@@ -27,7 +27,7 @@ namespace Lombiq.TrainingDemo.Services;
 // Tasks admin page. Also you can set Enabled to false if you don't want it start right after application start. These
 // settings can be updated entirely on the Background Tasks admin page.
 [BackgroundTask(Schedule = "*/2 * * * *", Description = "Demo background task that runs every 2 minutes.")]
-public class DemoBackgroundTask : IBackgroundTask
+public sealed class DemoBackgroundTask : IBackgroundTask
 {
     // Setting a maximum time this background task will be executed.
     private const int MaxCount = 5;

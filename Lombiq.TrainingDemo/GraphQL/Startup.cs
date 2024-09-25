@@ -21,7 +21,7 @@ namespace Lombiq.TrainingDemo.GraphQL;
 // to let it run when GraphQL is disabled. When the GraphQL feature is enabled you can go to Configuration > GraphiQL to
 // inspect and play around with the queries without needing an external query editor.
 [RequireFeatures("OrchardCore.Apis.GraphQL")]
-public class Startup : StartupBase
+public sealed class Startup : StartupBase
 {
     public override void ConfigureServices(IServiceCollection services)
     {

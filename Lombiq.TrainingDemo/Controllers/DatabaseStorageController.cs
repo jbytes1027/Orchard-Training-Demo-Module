@@ -24,7 +24,7 @@ using YesSql;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class DatabaseStorageController : Controller
+public sealed class DatabaseStorageController : Controller
 {
     private readonly ISession _session;
     private readonly IDisplayManager<Book> _bookDisplayManager;

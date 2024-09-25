@@ -14,7 +14,7 @@ using YesSql.Sql;
 namespace Lombiq.TrainingDemo.Migrations;
 
 // Don't forget to register this class with the service provider (see: Startup.cs).
-public class BookMigrations : DataMigration
+public sealed class BookMigrations : DataMigration
 {
     // Migrations have Create() and UpdateFromX methods. When the module is first enabled the Create() is called so it
     // can set up DB tables.

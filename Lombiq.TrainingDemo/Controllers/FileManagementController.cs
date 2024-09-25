@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class FileManagementController : Controller
+public sealed class FileManagementController : Controller
 {
     // Let's have the paths here in constants to avoid repeating ourselves.
     private const string TestFileRelativePath = "TrainingDemo/TestFile1.txt";

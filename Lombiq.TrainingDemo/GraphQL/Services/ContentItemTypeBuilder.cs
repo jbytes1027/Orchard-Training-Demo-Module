@@ -15,6 +15,7 @@ public class ContentItemTypeBuilder : IContentTypeBuilder
 
     // Here you can add arguments to every Content Type (top level) field.
     public void Build(
+        ISchema schema,
         FieldType contentQuery,
         ContentTypeDefinition contentTypeDefinition,
         ContentItemType contentItemType)
@@ -26,11 +27,7 @@ public class ContentItemTypeBuilder : IContentTypeBuilder
 
         // The resolved type can be anything that can be represented with JSON and has a known graph type, but we stick
         // with numbers for simplicity's sake. This one filters for equation.
-        contentQuery.Arguments.Add(new QueryArgument<IntGraphType>
-        {
-            Name = AgeFilterName,
-            ResolvedType = new IntGraphType(),
-        });
+        AddFilter(contentQuery, suffix: string.Empty);
 
         // You can't use special characters in the argument names so by GraphQL convention these two letter suffixes
         // that represent the relational operators. Except equation which customarily gets no suffix.
@@ -43,12 +40,15 @@ public class ContentItemTypeBuilder : IContentTypeBuilder
         AddFilter(contentQuery, "_ne");
     }
 
-    private static void AddFilter(FieldType contentQuery, string suffix) =>
-        contentQuery.Arguments.Add(new QueryArgument<IntGraphType>
+    private static void AddFilter(FieldType contentQuery, string suffix)
+    {
+        contentQuery.Arguments ??= [];
+        contentQuery.Arguments!.Add(new QueryArgument<IntGraphType>
         {
             Name = AgeFilterName + suffix,
             ResolvedType = new IntGraphType(),
         });
+    }
 }
 
 // NEXT STATION: Services/PersonAgeGraphQLFilter.cs

@@ -8,7 +8,7 @@ namespace Lombiq.TrainingDemo.Drivers;
 // ActivityDisplayDriver is specifically for implementing workflow tasks. It performs a simple mapping of a
 // ManagePersonsPermissionCheckerTask to a ManagePersonsPermissionCheckerTaskViewModel and vice versa. Don't forget to
 // register this class with the service provider (see: Startup.cs).
-public class ManagePersonsPermissionCheckerTaskDisplayDriver :
+public sealed class ManagePersonsPermissionCheckerTaskDisplayDriver :
     ActivityDisplayDriver<ManagePersonsPermissionCheckerTask,
     ManagePersonsPermissionCheckerTaskViewModel>
 {

@@ -22,7 +22,7 @@ using System.Threading.Tasks;
 namespace Lombiq.TrainingDemo.Filters;
 
 // Don't forget to add this filter to the filter collection in the Startup.cs file.
-public class ShapeInjectionFilter : IAsyncResultFilter
+public sealed class ShapeInjectionFilter : IAsyncResultFilter
 {
     // To access the layout which contains the zones you need to use the ILayoutAccessor service.
     private readonly ILayoutAccessor _layoutAccessor;

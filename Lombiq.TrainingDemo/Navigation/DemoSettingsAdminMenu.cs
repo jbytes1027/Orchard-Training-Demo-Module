@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace Lombiq.TrainingDemo.Navigation;
 
 // To actually see the menu item on the admin menu we need to add a navigation provider to it.
-public class DemoSettingsAdminMenu : INavigationProvider
+public sealed class DemoSettingsAdminMenu : INavigationProvider
 {
     private readonly IStringLocalizer T;
 
     public DemoSettingsAdminMenu(IStringLocalizer<DemoSettingsAdminMenu> stringLocalizer) => T = stringLocalizer;
 
-    public Task BuildNavigationAsync(string name, NavigationBuilder builder)
+    public ValueTask BuildNavigationAsync(string name, NavigationBuilder builder)
     {
-        if (!string.Equals(name, "admin", StringComparison.OrdinalIgnoreCase)) return Task.CompletedTask;
+        if (!string.Equals(name, "admin", StringComparison.OrdinalIgnoreCase)) return ValueTask.CompletedTask;
 
         // If you want to put a menu item to a deeper lever under an existing menu item you just need to build your menu
         // using the menu text of the existing items. Here the Configuration and Settings menu items are already
@@ -35,7 +35,7 @@ public class DemoSettingsAdminMenu : INavigationProvider
                     .LocalNav()
                 )));
 
-        return Task.CompletedTask;
+        return ValueTask.CompletedTask;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Filters;
 
-public class ResourceFromShapeInjectingFilter : IAsyncResultFilter
+public sealed class ResourceFromShapeInjectingFilter : IAsyncResultFilter
 {
     // We've seen IResourceManager and IShapeFactory before.
     private readonly IResourceManager _resourceManager;

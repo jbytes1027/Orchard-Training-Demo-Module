@@ -45,21 +45,21 @@ public class TestedServiceTests
 
         mocker
             .GetMock<IContentManager>()
-            .Verify(contentManager => contentManager.GetAsync(It.Is<string>(id => id == TestContentId)));
+            .Verify(contentManager => contentManager.GetAsync(It.Is<string>(id => id == TestContentId), It.IsAny<VersionOptions>()));
     }
 
     [Fact]
     public async Task ContentItemsAreRetrieved()
     {
-        // In this test we'll mock IContentManager so it actually returns something we can then verify.
+        // In this test we'll mock IContentManager, so it actually returns something we can then verify.
 
         var service = CreateTestedService(out var mocker);
 
         // Setting up an IContentManager mock that'll return a basic ContentItem placeholder.
         mocker
             .GetMock<IContentManager>()
-            .Setup(contentManager => contentManager.GetAsync(It.IsAny<string>()))
-            .ReturnsAsync<string, IContentManager, ContentItem>(id => new ContentItem { ContentItemId = id });
+            .Setup(contentManager => contentManager.GetAsync(It.IsAny<string>(), It.IsAny<VersionOptions>()))
+            .ReturnsAsync<string, VersionOptions, IContentManager, ContentItem>((id, _) => new ContentItem { ContentItemId = id });
 
         var contentItem = await service.GetContentItemOrThrowAsync(TestContentId);
 
@@ -71,7 +71,7 @@ public class TestedServiceTests
         // We're using a library called AutoMocker here. It extends the Moq mocking library with the ability to
         // automatically substitute injected dependencies with a mocked instance. It's a bit like a special dependency
         // injection container. This way, your tested classes will get all their dependencies injected even if you don't
-        // explicitly register a mock or stub for the.
+        // explicitly register a mock or stub.
 
         mocker = new AutoMocker();
         return mocker.CreateInstance<TestedService>();

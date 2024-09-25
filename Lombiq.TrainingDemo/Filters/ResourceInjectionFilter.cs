@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Lombiq.TrainingDemo.Filters;
 
 // Don't forget to add this filter to the filter collection in the Startup.cs file.
-public class ResourceInjectionFilter : IAsyncResultFilter
+public sealed class ResourceInjectionFilter : IAsyncResultFilter
 {
     // To register resources you can use the IResourceManager service.
     private readonly IResourceManager _resourceManager;

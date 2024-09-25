@@ -26,7 +26,7 @@ using YesSql;
 
 namespace Lombiq.TrainingDemo.Controllers;
 
-public class PersonListController : Controller
+public sealed class PersonListController : Controller
 {
     private readonly ISession _session;
     private readonly IClock _clock;
