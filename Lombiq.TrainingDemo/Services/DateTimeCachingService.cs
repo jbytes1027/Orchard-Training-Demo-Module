@@ -4,16 +4,11 @@ using OrchardCore.DynamicCache;
 using OrchardCore.Environment.Cache;
 using OrchardCore.Modules;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading.Tasks;
 
 namespace Lombiq.TrainingDemo.Services;
 
-[SuppressMessage(
-        "Usage",
-        "VSTHRD003:Avoid awaiting foreign Tasks",
-        Justification = "We need LocalNowAsync to create cachedDate.")]
 public class DateTimeCachingService : IDateTimeCachingService
 {
     public const string MemoryCacheKey = "Lombiq.TrainingDemo.MemoryCache.DateTime";
@@ -61,7 +56,7 @@ public class DateTimeCachingService : IDateTimeCachingService
     {
         if (!_memoryCache.TryGetValue(MemoryCacheKey, out DateTime cachedDate))
         {
-            cachedDate = (await _localClock.LocalNowAsync).DateTime;
+            cachedDate = (await _localClock.GetLocalNowAsync()).DateTime;
 
             _memoryCache.Set(MemoryCacheKey, cachedDate, GetMemoryCacheChangeToken());
         }
@@ -116,7 +111,7 @@ public class DateTimeCachingService : IDateTimeCachingService
         // to the current date.
         var cachedDateTime = cachedDateTimeText != null ?
             DateTime.Parse(cachedDateTimeText, CultureInfo.InvariantCulture) :
-            (await _localClock.LocalNowAsync).DateTime;
+            (await _localClock.GetLocalNowAsync()).DateTime;
 
         // If the date time text is null (meaning it wasn't cached) cache the DateTime object (which in this case is the
         // current date).
