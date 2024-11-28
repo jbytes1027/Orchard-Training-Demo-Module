@@ -44,7 +44,6 @@ using OrchardCore.Modules;
 using OrchardCore.Navigation;
 using OrchardCore.ResourceManagement;
 using OrchardCore.Security.Permissions;
-using OrchardCore.Settings;
 using OrchardCore.Users.Events;
 using OrchardCore.Workflows.Helpers;
 using System;
@@ -65,7 +64,7 @@ public sealed class Startup : StartupBase
         // NEXT STATION: Views/PersonPart.Edit.cshtml
 
         // Book
-        services.AddScoped<IDisplayDriver<Book>, BookDisplayDriver>();
+        services.AddDisplayDriver<Book, BookDisplayDriver>();
         services.AddScoped<IDisplayManager<Book>, DisplayManager<Book>>();
         services.AddDataMigration<BookMigrations>();
         services.AddIndexProvider<BookIndexProvider>();
@@ -98,7 +97,7 @@ public sealed class Startup : StartupBase
         // Demo Settings
         services.Configure<DemoSettings>(_shellConfiguration.GetSection("Lombiq_TrainingDemo"));
         services.AddTransient<IConfigureOptions<DemoSettings>, DemoSettingsConfiguration>();
-        services.AddScoped<IDisplayDriver<ISite>, DemoSettingsDisplayDriver>();
+        services.AddSiteDisplayDriver<DemoSettingsDisplayDriver>();
         services.AddPermissionProvider<DemoSettingsPermissions>();
         services.AddNavigationProvider<DemoSettingsAdminMenu>();
 
