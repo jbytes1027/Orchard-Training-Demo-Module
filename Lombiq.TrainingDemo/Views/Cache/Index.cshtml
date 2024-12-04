@@ -1,11 +1,20 @@
 @model CacheViewModel
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment Environment
 
 @inject OrchardCore.Modules.ILocalClock LocalClock
 @* Here are the different DateTime values cached multiple ways and also the current uncached date time in the first row
     to see the differences. *@
 
-<p>@T["Current date (not cached): {0}", (await LocalClock.LocalNowAsync).DateTime]</p>
+<p>@T["Current date (not cached): {0}", (await LocalClock.GetLocalNowAsync()).DateTime]</p>
 <p>@T["Memory cached date: {0}", Model.MemoryCachedDateTime]</p>
+@if (Environment.EnvironmentName != "Production")
+{
+    <p>
+        @T[
+            "<strong>WARNING!</strong> By default, dynamic cache is disabled in non-Production environments, what your app is running in now. To see caching, set Cache Mode to Enabled under <a href=\"{0}\">cache settings</a>.",
+            Url.Content("~/Admin/Settings/general")]
+    </p>
+}
 <p>@T["Dynamic cached date with 30 seconds expiry: {0}", Model.DynamicCachedDateTimeWith30SecondsExpiry]</p>
 <p>@T["Tagged dynamic cached date varied by routes: {0}", Model.DynamicCachedDateTimeVariedByRoutes]</p>
 
